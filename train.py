@@ -6,14 +6,20 @@
 """
 
 import subprocess
-
+from os import path
 # DATA
 
-path_src_train = '../../datasets/1-encoder/train/src-train.txt'
-path_tgt_train = '../../datasets/1-encoder/train/tgt-train.txt'
+# path_src_train = '../../datasets/1-encoder/train/src-train.txt'
+path_src_train = path.join('train', 'src-train.txt')
 
-path_src_val = '../../datasets/1-encoder/eval/src-val.txt'
-path_tgt_val = '../../datasets/1-encoder/eval/tgt-val.txt'
+# path_tgt_train = '../../datasets/1-encoder/train/tgt-train.txt'
+path_tgt_train = path.join('train', 'tgt-train.txt')
+
+# path_src_val = '../../datasets/1-encoder/eval/src-val.txt'
+path_src_val = path.join('train', 'src-val.txt')
+
+# path_tgt_val = '../../datasets/1-encoder/eval/tgt-val.txt'
+path_tgt_val = path.join('train', 'src-val.txt')
 
 
 
@@ -43,7 +49,7 @@ subprocess.run('chmod a+x train_model.sh', shell=True)
 
 f_sh = open('./train_model.sh', 'w')
 f_sh.write('#!/usr/bin/env bash\n')
-f_sh.write('onmt-main --model custom_1encoder_transformer.py --gpu_allow_growth --config data.yml --auto_config train --with_eval')
+f_sh.write('onmt-main --model Ablator.py --gpu_allow_growth --config data.yml --auto_config train --with_eval')
 f_sh.close()
 
 subprocess.run('./train_model.sh')

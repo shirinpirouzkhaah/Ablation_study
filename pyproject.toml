@@ -1,19 +1,19 @@
 [tool.poetry]
-name = "automatedcodereview"
+name = "ablation study"
 version = "0.1.0"
-description = "automating code revisions"
+description = "Ablation Study for Code review"
 authors = ["shirinpirouzkhaah <pirouzkhah@yahoo.com>"]
 license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.9"
-requests = "^2.28.2"
+python = "^3.11"
 pandas = "^1.5.3"
+requests = "^2.28.2"
 ndifflib = "^0.1.0"
 Levenshtein = "^0.20.9"
-subprocess = "*"
-opennmt = "*"
+OpenNMT-py = "^3.0.3"
+
 
 [build-system]
 requires = ["poetry-core"]
