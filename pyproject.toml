@@ -6,7 +6,7 @@ authors = ["shirinpirouzkhaah <pirouzkhah@yahoo.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "~3.11"
+python = "~3.9"
 pandas = "^1.5.3"
 requests = "^2.28.2"
 ndifflib = "^0.1.0"
