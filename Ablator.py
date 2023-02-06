@@ -72,64 +72,64 @@ Output layer: Produces the final prediction.
 hyperparameters in opennmt.models.Transformer are num_layers, num_units, num_heads, ffn_inner_dim, dropout, attention_dropout, and ffn_dropout.
 """
 
-class MyCustomTransformerAblator(MyCustomTransformer):
-    def __init__(self, original_model, reduce_layers=False, reduce_units=False, remove_heads=False, 
-                 reduce_ffn_inner_dim=False, increase_dropout=False, increase_attention_dropout=False,
-                 increase_ffn_dropout=False, remove_position_wise_fc=False, remove_layer_norm=False,
-                 remove_output_layer=False, use_char_embedding=False, use_word_embedding=False):
-        super().__init__()
-        self.original_model = original_model
-        self.reduce_layers = reduce_layers
-        self.reduce_units = reduce_units
-        self.remove_heads = remove_heads
-        self.reduce_ffn_inner_dim = reduce_ffn_inner_dim
-        self.increase_dropout = increase_dropout
-        self.increase_attention_dropout = increase_attention_dropout
-        self.increase_ffn_dropout = increase_ffn_dropout
-        self.remove_position_wise_fc = remove_position_wise_fc
-        self.remove_layer_norm = remove_layer_norm
-        self.remove_output_layer = remove_output_layer
-        self.use_char_embedding = use_char_embedding
-        self.use_word_embedding = use_word_embedding
+# class MyCustomTransformerAblator(MyCustomTransformer):
+#     def __init__(self, original_model, reduce_layers=False, reduce_units=False, remove_heads=False, 
+#                  reduce_ffn_inner_dim=False, increase_dropout=False, increase_attention_dropout=False,
+#                  increase_ffn_dropout=False, remove_position_wise_fc=False, remove_layer_norm=False,
+#                  remove_output_layer=False, use_char_embedding=False, use_word_embedding=False):
+#         super().__init__()
+#         self.original_model = original_model
+#         self.reduce_layers = reduce_layers
+#         self.reduce_units = reduce_units
+#         self.remove_heads = remove_heads
+#         self.reduce_ffn_inner_dim = reduce_ffn_inner_dim
+#         self.increase_dropout = increase_dropout
+#         self.increase_attention_dropout = increase_attention_dropout
+#         self.increase_ffn_dropout = increase_ffn_dropout
+#         self.remove_position_wise_fc = remove_position_wise_fc
+#         self.remove_layer_norm = remove_layer_norm
+#         self.remove_output_layer = remove_output_layer
+#         self.use_char_embedding = use_char_embedding
+#         self.use_word_embedding = use_word_embedding
 
-    def forward(self, source, target):
-        if self.reduce_layers:
-            self.original_model.num_layers = [1, 2]
-        if self.reduce_units:
-            self.original_model.num_units = 128
-        if self.remove_heads:
-            self.original_model.num_heads = 1
-        if self.reduce_ffn_inner_dim:
-            self.original_model.ffn_inner_dim = 128
-        if self.increase_dropout:
-            self.original_model.dropout = 0.3
-        if self.increase_attention_dropout:
-            self.original_model.attention_dropout = 0.2
-        if self.increase_ffn_dropout:
-            self.original_model.ffn_dropout = 0.25
-        if self.remove_position_wise_fc:
-            self.original_model.position_wise_fc = False
-        if self.remove_layer_norm:
-            self.original_model.layer_norm = False
-        if self.remove_output_layer:
-            self.original_model.output_layer = False
-        if self.use_char_embedding:
-            self.original_model.embedder = opennmt.inputters.CharConvEmbedder()
-        if self.use_word_embedding:
-            self.original_model.embedder = opennmt.inputters.WordEmbedder()
+#     def forward(self, source, target):
+#         if self.reduce_layers:
+#             self.original_model.num_layers = [1, 2]
+#         if self.reduce_units:
+#             self.original_model.num_units = 128
+#         if self.remove_heads:
+#             self.original_model.num_heads = 1
+#         if self.reduce_ffn_inner_dim:
+#             self.original_model.ffn_inner_dim = 128
+#         if self.increase_dropout:
+#             self.original_model.dropout = 0.3
+#         if self.increase_attention_dropout:
+#             self.original_model.attention_dropout = 0.2
+#         if self.increase_ffn_dropout:
+#             self.original_model.ffn_dropout = 0.25
+#         if self.remove_position_wise_fc:
+#             self.original_model.position_wise_fc = False
+#         if self.remove_layer_norm:
+#             self.original_model.layer_norm = False
+#         if self.remove_output_layer:
+#             self.original_model.output_layer = False
+#         if self.use_char_embedding:
+#             self.original_model.embedder = opennmt.inputters.CharConvEmbedder()
+#         if self.use_word_embedding:
+#             self.original_model.embedder = opennmt.inputters.WordEmbedder()
             
-        return self.original_model(source, target)
+#         return self.original_model(source, target)
     
     
 
-original_model = MyCustomTransformer
+# original_model = MyCustomTransformer
 
-ablated_model = MyCustomTransformerAblator(original_model, reduce_layers=True, reduce_units=True, 
-                                            remove_heads=True, reduce_ffn_inner_dim=True, 
-                                            increase_dropout=True, increase_attention_dropout=True, 
-                                            increase_ffn_dropout=True, remove_position_wise_fc=True, remove_layer_norm=False,
-                                            remove_output_layer=True, use_char_embedding=True, 
-                                            use_word_embedding=True)
+# ablated_model = MyCustomTransformerAblator(original_model, reduce_layers=True, reduce_units=True, 
+#                                             remove_heads=True, reduce_ffn_inner_dim=True, 
+#                                             increase_dropout=True, increase_attention_dropout=True, 
+#                                             increase_ffn_dropout=True, remove_position_wise_fc=True, remove_layer_norm=False,
+#                                             remove_output_layer=True, use_char_embedding=True, 
+#                                             use_word_embedding=True)
 
 # source = # some input source
 # target = # some input target
