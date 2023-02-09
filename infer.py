@@ -6,12 +6,13 @@
 """
 
 import subprocess
+from os import path
 
 
 #DATA
 
 path_datayml = 'data.yml'
-src_file = path.join('train', 'src-train.txt')
+src_file = path.join('train', 'src-test.txt')
 path_pred = 'predictions.txt'
 
 # INFER
