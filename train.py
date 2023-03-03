@@ -8,6 +8,9 @@
 import subprocess
 from os import path
 import logging
+import wandb
+import random
+
 
 LOGGER = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -49,6 +52,26 @@ def main():
     logging.info("build_vocab.h")
     subprocess.run('./build_vocab.sh')
     
+    
+     # W&B INIT
+    
+    wandb.init(
+        # set the wandb project where this run will be logged
+        project="my-awesome-project",
+
+        # track hyperparameters and run metadata
+        config={
+            "learning_rate": 0.5132,
+            "beam_width": 10,
+            "num_hypotheses": 1,
+            "optimizer": "Adam",
+            "dataset": "my-dataset",
+            "architecture": "my-model",
+            "epochs": 10,
+        }
+    )
+    
+    
     # TRAINING
     
     print('Starting Training...')
@@ -62,16 +85,25 @@ def main():
     f_sh.write('onmt-main --model Ablator.py --gpu_allow_growth --config data.yml --auto_config train --with_eval')
     f_sh.close()
     logging.info("train_model.sh")
+    
+    
+    # simulate training
+    epochs = 10
+    offset = random.random() / 5
+    for epoch in range(2, epochs):
+        acc = 1 - 2 ** -epoch - random.random() / epoch - offset
+        loss = 2 ** -epoch + random.random() / epoch + offset
+        
+        # log metrics to wandb
+        wandb.log({"acc": acc, "loss": loss})
+        
+    # finish the wandb run
+    wandb.finish()
+    
+    
     subprocess.run('./train_model.sh')
     
 
 if __name__ == "__main__":
     main()
 
-
-# python = "~3.11"
-# pandas = "^1.5.3"
-# requests = "^2.28.2"
-# ndifflib = "^0.1.0"
-# Levenshtein = "^0.20.9"
-# OpenNMT-tf = "*"
