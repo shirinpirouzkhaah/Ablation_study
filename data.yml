@@ -11,7 +11,7 @@ data:
 params:
   optimizer: Adam
   learning_rate: 0.5132
-  beam_width: 1
+  beam_width: 10
   num_hypotheses: 1
 eval:
   steps: 10000
